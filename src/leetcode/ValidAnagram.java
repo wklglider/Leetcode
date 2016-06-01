@@ -10,16 +10,14 @@ import java.util.Arrays;
  */
 public class ValidAnagram {
 	public boolean isAnagram(String s, String t) {
-		if (s.length() != t.length())
-			return false;
-		char[] sarray = s.toCharArray();
-		char[] tarray = t.toCharArray();
-		Arrays.sort(sarray);
-		Arrays.sort(tarray);
-		for (int i = 0; i < sarray.length; i++) {
-			if (sarray[i] != tarray[i])
-				return false;
-		}
-		return true;
+		if(s.length() != t.length()) return false;
+        	int[] record = new int[256];
+        	for(char x : s.toCharArray())
+        		record[x]++;
+        	for(char x : t.toCharArray())
+        		record[x]--;
+        	for(int x : record)
+        		if(x != 0) return false;
+        	return true;
 	}
 }
